@@ -1,0 +1,40 @@
+<aura:component implements="force:appHostable" controller="NotificationController" access="global">
+    <ltng:require scripts="{!$Resource.cometd}" afterScriptsLoaded="{!c.onCometdLoaded}"/>
+    <aura:attribute name="sessionId" type="String"/>
+    <aura:attribute name="cometd" type="Object"/>
+    <aura:attribute name="cometdSubscriptions" type="Object[]"/>
+    <aura:attribute name="pEvents" type="Object[]"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+
+    <div class="slds">  
+        <article class="slds-card">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    Platform Event Viewer (Text your First Name and Last Name 
+to +1 (833) 287-7223)
+                </header>
+            </div> 
+            <div class="slds-card__body slds-card__body_inner">
+                <!-- Notification list -->
+                <aura:iteration items="{!v.pEvents}" var="pEvents">
+                    <div class="slds-p-around--small slds-border--top">
+                        <div class="slds-grid slds-gutters">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-col slds-size_1-of-3">
+                                    <span>{!pEvents.fName}</span>
+                                </div>
+                                <div class="slds-col slds-size_1-of-3">
+                                    <span>{!pEvents.lName}</span>
+                                </div>
+                                <div class="slds-col slds-size_1-of-3">
+                                    <span>{!pEvents.phone}</span>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                </aura:iteration>
+            </div>
+        </article>
+    </div>
+</aura:component>

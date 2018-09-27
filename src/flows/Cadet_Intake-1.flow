@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <interviewLabel>Cadet Intake {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Cadet Intake</label>
+    <processType>Flow</processType>
+    <recordCreates>
+        <name>FirePlatformEvent</name>
+        <label>FirePlatformEvent</label>
+        <locationX>102</locationX>
+        <locationY>204</locationY>
+        <inputAssignments>
+            <field>First_Name__c</field>
+            <value>
+                <elementReference>First_Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Last_Name__c</field>
+            <value>
+                <elementReference>Last_Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Mobile__c</field>
+            <value>
+                <elementReference>Mobile_Phone</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Text_to_Lead__e</object>
+    </recordCreates>
+    <screens>
+        <name>CadetIntake</name>
+        <label>CadetIntake</label>
+        <locationX>105</locationX>
+        <locationY>82</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>FirePlatformEvent</targetReference>
+        </connector>
+        <fields>
+            <name>First_Name</name>
+            <dataType>String</dataType>
+            <fieldText>First Name</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Last_Name</name>
+            <dataType>String</dataType>
+            <fieldText>Last Name</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Mobile_Phone</name>
+            <dataType>String</dataType>
+            <fieldText>Mobile Phone</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+            <validationRule>
+                <errorMessage>The value you entered doesn&apos;t meet the validation criteria for this input field.</errorMessage>
+                <formulaExpression>REGEX( {!Mobile_Phone} , &quot;\\D*?(\\d\\D*?){10}&quot; )</formulaExpression>
+            </validationRule>
+        </fields>
+    </screens>
+    <startElementReference>CadetIntake</startElementReference>
+</Flow>
